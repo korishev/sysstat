@@ -24,13 +24,13 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-package "sysstat"
-
 script "set sysstat default ENABLED='true'" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
   code <<-EOC
-  /bin/sed -i "s/ENABLED=\"false\"/ENABLED=\"true\"/" /etc/default/sysstat
+  echo "sysstat sysstat/enable boolean true" | debconf-set-selections
   EOC
 end
+
+package "sysstat"
