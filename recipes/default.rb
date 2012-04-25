@@ -27,7 +27,7 @@
 package "sysstat"
 
 script "set sysstat default ENABLED='true'" do
-  interpeter "bash"
+  interpreter "bash"
   user "root"
   cwd "/etc/default"
   code <<-EOC
