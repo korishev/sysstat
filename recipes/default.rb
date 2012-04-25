@@ -29,8 +29,8 @@ package "sysstat"
 script "set sysstat default ENABLED='true'" do
   interpreter "bash"
   user "root"
-  cwd "/etc/default"
+  cwd "/tmp"
   code <<-EOC
-  sed -i "s/ENABLED=\"false\"/ENABLED=\"true\"/" /etc/default/sysstat
+  /bin/sed -i "s/ENABLED=\"false\"/ENABLED=\"true\"/" /etc/default/sysstat
   EOC
 end
