@@ -24,13 +24,9 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-script "set sysstat default ENABLED='true'" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-EOC
-  echo "sysstat sysstat/enable boolean true" | debconf-set-selections
-  EOC
+execute "set sysstat default ENABLED='true'" do
+  command %{echo "sysstat sysstat/enable boolean true" | debconf-set-selections}
+  not_if %{debconf-show sysstat | grep "sysstat/enable: true"}
 end
 
 package "sysstat"
